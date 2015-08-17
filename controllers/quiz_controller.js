@@ -15,9 +15,8 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-   if (typeof(req.query.search) != "undefined" && req.query.search != "Texto a buscar") {
-      console.log(req.query.search);
-      search = '%' + req.query.search.replace(/ /g, '%') + '%';    // req.query.search format
+   if (typeof(req.query.search) != "undefined") {                 // isDefined(req.query.search)
+      search = '%' + req.query.search.replace(/ /g, '%') + '%';   // req.query.search format
       whereClause = { where: ["pregunta like ?", search ] };
    } else {
       whereClause = {};
