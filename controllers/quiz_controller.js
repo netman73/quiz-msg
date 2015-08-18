@@ -68,11 +68,6 @@ exports.create = function(req, res) {
          }     // res.redirect: redirección HTTP a lista de preguntas
       }
    );
-
-   // guarda en la DB los campos pregunta y respuesta de quiz
-   quiz.save({ fields: ["pregunta", "respuesta"]}).then(function() {
-      res.redirect('/quizes');
-   }) // Redirección HTTP (URL relativo) lista de preguntas
 };
 
 // GET /quizes/:id/edit
@@ -100,6 +95,13 @@ exports.update = function(req, res) {
          }
       }
    );
+};
+
+// DELETE /quizes/:id
+exports.destroy = function(req, res) {
+   req.quiz.destroy().then( function() {
+      res.redirect('/quizes');
+   }).catch(function(error) { next(error); });
 };
 
 // GET /author
