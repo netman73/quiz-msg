@@ -2,6 +2,7 @@
 <% var i; for (i=0; i < quizes.length; i++) { %>
    <tr>
       <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+<% if (session.user) { %>
       <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].tema %></a></td>
       <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
       <td>
@@ -11,10 +12,13 @@
             </button>
          </form>
       </td>
+<% } %>
    </tr>
 <% } %>
 </table>
 <%- include search %>
 <table>
+<% if (session.user) { %>
 <tr><td><a href="/quizes/new"><button type="button">Crear pregunta</button></a></td></tr>
+<% } %>
 </table>
