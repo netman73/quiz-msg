@@ -24,7 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
-app.use(session());
+app.use(session({ cookie: { maxAge: 120000 }})); // Expira en 2 minutos, salvo que se renueve automáticamente porque se haga alguna transacción
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
